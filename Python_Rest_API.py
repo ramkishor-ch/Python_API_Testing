@@ -2,9 +2,10 @@
 
 # GET : Read 
 # POST : Create
-# Put : Update, complete set of record has to pass for updating the multiple values
+# Put : Update, complete set of record has to pass for updating the MULTIPLE VALUES
 # Delete : Delete
-# Patch : Update, only single field/column value then we use patch
+# Patch : Update, only SINGLE field/column of single VALUE then we use patch.
+
 
 
 import requests
@@ -31,7 +32,7 @@ import requests
 # when login into system, token is generated
 # using that token used to perform all API authentication operations
 # token is encrypted format and it is used every where and
-# token contains data, we can see it by decrypting it
+# token contains data, to see data we can decrypt it.
 
 url = "https://gorest.co.in/public/v2/users"
 headers = {
@@ -44,7 +45,9 @@ print(status_code) # Output : 200 Success, The request was successful.
 print(result)      # Output : [{'id':236048, ... ,'status':'inactive'}]
 
 
+
 print("\n")
+
 
 
 
@@ -73,17 +76,104 @@ print(status_code) # Output : 201 Created, The resource was successfully created
 
 
 
-# 404 : Not Found occurs, The requested resource could not be found.
-# When you incorrect url, pass data to that url, 404 error occurs
+
 
 # 400 : Bad Request	
 # The input parameters in the request body are either incomplete or in the wrong format. 
 # Be sure to include all required parameters in your request.
 
 
+# 404 : Not Found occurs, The requested resource could not be found.
+# When you incorrect url, pass data to that url, 404 error occurs
+
+# 405 : Method Not Allowed
 
 
 
+
+
+
+# PATCH
+# Update, only SINGLE field/column of single VALUE then we use patch.
+import requests
+import json
+
+url = "https://gorest.co.in/public/v2/users/267697"
+
+payload = json.dumps([
+  {
+    "name": "WXYZ"
+  }
+])
+headers = {
+  'Authorization': 'Bearer e22d5f6b7b7f4b69da5e22e21efcfc8084af58b32dbe7cb850b84504e82d127d',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PATCH", url, headers=headers, data=payload)
+
+print(response.text)
+# Output : user id 267697 updating the name field from "Daya" to "WXYZ"
+
+
+
+
+
+
+
+# PUT
+# We can update the multiple values or multiple fields at once or single value can be used to update the rest api
+
+import requests
+import json
+
+url = "https://gorest.co.in/public/v2/users/267697"
+
+payload = json.dumps([
+  {
+    "name": "ABCDEF",
+    "gender": "male"
+  }
+])
+headers = {
+  'Authorization': 'Bearer e22d5f6b7b7f4b69da5e22e21efcfc8084af58b32dbe7cb850b84504e82d127d',
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("PUT", url, headers=headers, data=payload)
+
+print(response.text)
+# Output : user id 267697 updating the name field from "Daya" to "ABCDEF", "female" to "male"
+
+
+
+
+
+
+# Delete
+# DELETE request deletes a resource already present in the server,
+# after deleting it, it is capable of updating data on the server.
+import requests
+
+url = "https://gorest.co.in/public/v2/todos/3051"
+
+payload = ""
+headers = {
+  'Authorization': 'Bearer e22d5f6b7b7f4b69da5e22e21efcfc8084af58b32dbe7cb850b84504e82d127d'
+}
+
+response = requests.request("DELETE", url, headers=headers, data=payload)
+
+print(response.text) 
+# Output : https://gorest.co.in/public/v2/todos/3051
+# based on the user ID : 3051 was deleted from the database
+
+# For Information :
+# The fields cannot be deleted because firstly the developer has to make the changes
+# then only from delete rest api we can delete it
+
+
+# 204	: No Content, The request was successful. No response body is provided.
 
 
 
