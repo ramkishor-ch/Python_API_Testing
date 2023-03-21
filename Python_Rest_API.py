@@ -147,12 +147,14 @@ print(response.text)
 
 
 
-# We can RESTRICT the developer or tester to use PATCH, that if they want to update only single FIELD of VALUE.
-# We can use PUT request for single FIELD of value for updation, but here there is a chance of misuse or
-# updating uncessary FIELDS to update the values.
+# We can RESTRICT the developer or tester to use PATCH, that if there is only to update of single FIELD of VALUE,
+# instead of using PUT for updating SINGLE FIELD of VALUE.
 
-# If there is only SINGLE FIELD of value need to be update then use : PATCH
-# If there is MULTIPLE FIELDS of values needs to be update the use : PUT
+# We can use PUT request for single FIELD of value for updation, but here there is a chance of misuse or
+# updating unknowingly of uncessary FIELDS of values.
+
+# If there is only SINGLE FIELD of value need to be update it, then use : PATCH
+# If there is MULTIPLE FIELDS of values needs to be update it, the use : PUT
 
 
 # Delete
